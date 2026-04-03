@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manpasand Kitchen & Restaurant - Authentic Pakistani Cuisine in Abu Dhabi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #1a0a00; /* Dark Brown */
+            --accent-color: #c8722a; /* Burnt Orange */
+            --background-color: #f5f0e8; /* Off-White/Cream */
+            --text-light: #f5f0e8;
+            --text-dark: #1a0a00;
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Lato', sans-serif;
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            color: var(--primary-color);
+            line-height: 1.2;
+            margin-bottom: 0.8em;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            color: var(--text-light); /* Ensure text remains light on hover */
+        }
+
+        .section-heading {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        /* Sticky Navigation Bar */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem; /* Adjust padding for smaller screens */
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            font-weight: 700;
+            white-space: nowrap; /* Prevent wrapping on small screens */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: none; /* Hidden by default for mobile */
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: block; /* Visible by default for mobile */
+            color: var(--text-light);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .nav-links.active li {
+            margin: 0.5rem 0;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: url('https://source.unsplash.com/featured/1600x900/?restaurant,food,plating') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+        
+        .google-rating {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+        .google-rating i {
+            color: #FFD700; /* Gold star color */
+            margin-right: 0.3rem;
+        }
+
+        /* Services Section */
+        #services {
+            padding: 4rem 0;
+            background-color: var(--background-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card i {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.7rem;
+            color: var(--primary-color);
+            margin-bottom: 0.7rem;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .service-card .cta-link {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 0.95rem;
+        }
+
+        .service-card .cta-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Menu Highlights, Chef Story, Ambience Gallery */
+        #menu-about {
+            padding: 4rem 0;
+            background-color: var(--text-light);
+        }
+
+        .menu-about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .menu-highlights, .chef-story {
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .menu-highlights h3, .chef-story h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .menu-item h4 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .chef-story img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chef-story p {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-reservations {
+            padding-top: 2rem;
+        }
+
+        .ambience-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .ambience-gallery img {
+            width: 100%;
+            height: 250px; /* Fixed height for consistency */
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .ambience-gallery img:hover {
+            transform: scale(1.02);
+        }
+
+        .reservations-cta, .delivery-takeaway-cta {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .reservations-cta h3, .delivery-takeaway-cta h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Reviews Section */
+        #reviews {
+            padding: 4rem 0;
+            background-color: var(--background-color);
+            text-align: center;
+        }
+        
+        #reviews .google-rating {
+            background-color: rgba(200, 114, 42, 0.1);
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            font-size: 1.3rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        #reviews .google-rating i {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .review-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            position: relative;
+        }
+
+        .review-card i.fa-quote-left {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            font-size: 2.5rem;
+            color: rgba(200, 114, 42, 0.2);
+        }
+
+        .review-card p.review-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1.5rem;
+            padding-top: 1rem;
+        }
+
+        .review-card .reviewer-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .review-card .review-source {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 0.3rem;
+        }
+
+        /* New Features Section */
+        #features {
+            padding: 4rem 0;
+            background-color: var(--text-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-right: 1rem;
+            flex-shrink: 0;
+            padding-top: 0.2rem;
+        }
+
+        .feature-item h4 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 4rem 0;
+            background-color: var(--background-color);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .contact-info p i {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            width: 20px; /* Fixed width for icon alignment */
+        }
+
+        .contact-form {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--body-font);
+            font-size: 1rem;
+            color: var(--text-dark);
+            background-color: #f9f9f9;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input[type="submit"] {
+            width: auto;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .map-container {
+            margin-top: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            height: 300px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer .logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-nav, .footer-services {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-nav li, .footer-services li {
+            display: inline-block;
+            margin: 0 0.8rem;
+        }
+        .footer-services li {
+            margin-bottom: 0.5rem;
+            display: block; /* Make services stack vertically on mobile */
+        }
+
+
+        .footer-nav a, .footer-services a, .footer-services span {
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover, .footer-services a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-contact-info {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-contact-info p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-contact-info i {
+            margin-right: 0.8rem;
+            color: var(--accent-color);
+        }
+        .footer .copyright {
+            margin-top: 1rem;
+            color: rgba(245, 240, 232, 0.7);
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366; /* WhatsApp Green */
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design (Tablet and Desktop) */
+        @media (min-width: 768px) {
+            .navbar .container {
+                padding: 0 2rem;
+            }
+
+            .nav-links {
+                display: flex;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .nav-links.active {
+                position: static;
+                flex-direction: row;
+                background-color: transparent;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .nav-links.active li {
+                margin: 0 0.8rem;
+            }
+
+            .hero-content h1 {
+                font-size: 4.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.4rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .menu-about-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .chef-story img {
+                float: right;
+                margin-left: 2rem;
+                width: 400px;
+                height: 300px;
+                object-fit: cover;
+            }
+
+            .ambience-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reservations-cta, .delivery-takeaway-cta {
+                padding: 3rem;
+            }
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-content {
+                grid-template-columns: 1fr 1.5fr;
+            }
+
+            .footer .container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .footer-nav, .footer-services {
+                margin-bottom: 0;
+            }
+
+            .footer .logo, .footer .copyright {
+                text-align: left;
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+            .footer-nav li, .footer-services li {
+                display: block; /* Stack vertically on larger screens too, better readability */
+                margin: 0.5rem 0;
+            }
+            .footer-services {
+                text-align: left; /* Align services to the left */
+            }
+            .footer-contact-info {
+                text-align: right;
+            }
+            .footer-contact-info p {
+                justify-content: flex-end; /* Align contact info to the right */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-content h1 {
+                font-size: 5.5rem;
+            }
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#hero" class="logo">Manpasand Kitchen & Restaurant</a>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#menu-about">Menu & Story</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <div class="google-rating">
+                    <i class="fas fa-star"></i> 4.6/5 Google rating
+                </div>
+                <h1>Experience the Authentic Taste of Pakistan in Abu Dhabi</h1>
+                <p>Manpasand Kitchen & Restaurant: Where Culinary Excellence Meets Warm Hospitality. Indulge in rich, aromatic flavors crafted with passion.</p>
+                <a href="#menu-about" class="btn">View Our Menu</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <div class="container">
+                <h2 class="section-heading">Our Distinctive Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Dine-In</h3>
+                        <p>Savor our exquisite dishes in our elegant setting, designed for an unforgettable culinary journey.</p>
+                        <a href="#contact" class="cta-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>Takeaway</h3>
+                        <p>Enjoy our gourmet meals and authentic Pakistani flavors in the comfort of your home or on the go.</p>
+                        <a href="#contact" class="cta-link">Order Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-truck"></i>
+                        <h3>Home Delivery</h3>
+                        <p>Delivering the authentic flavors of Pakistan straight to your door, fresh and piping hot.</p>
+                        <a href="#contact" class="cta-link">Explore Delivery <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-wine-glass"></i>
+                        <h3>Private Dining</h3>
+                        <p>Host an intimate gathering or special occasion in our exclusive private dining spaces, tailored to your needs.</p>
+                        <a href="#contact" class="cta-link">Book Your Event <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-concierge-bell"></i>
+                        <h3>Catering</h3>
+                        <p>Elevate your events with our bespoke Pakistani culinary experiences, perfect for any celebration.</p>
+                        <a href="#contact" class="cta-link">Inquire About Catering <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>Online Ordering</h3>
+                        <p>Conveniently order your favorite Manpasand dishes online for a seamless and quick experience.</p>
+                        <a href="#" class="cta-link">Order Online <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Highlights, Chef Story, Ambience Gallery -->
+        <section id="menu-about">
+            <div class="container">
+                <h2 class="section-heading">Our Culinary Journey</h2>
+                <div class="menu-about-grid">
+                    <div class="menu-highlights">
+                        <h3>Mouth-Watering Menu Highlights</h3>
+                        <div class="menu-item">
+                            <h4>Lahori Chargha</h4>
+                            <p>Our signature whole roasted chicken, marinated overnight in traditional Lahori spices and slow-cooked to juicy perfection.</p>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Gosht Karahi</h4>
+                            <p>Tender pieces of mutton cooked in a rich, spicy tomato-ginger gravy, a true Pakistani comfort food masterpiece.</p>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Chicken Biryani</h4>
+                            <p>Fragrant basmati rice layered with succulent chicken, infused with saffron, mint, and secret spices for an unforgettable aroma.</p>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Peshawari Chapli Kebab</h4>
+                            <p>Authentic flat minced meat patties, seasoned with pomegranate seeds and green chilies, grilled to smoky perfection.</p>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Gulab Jamun</h4>
+                            <p>Soft, melt-in-your-mouth milk solids dumplings, deep-fried and soaked in a fragrant rose and cardamom syrup.</p>
+                        </div>
+                    </div>
+                    <div class="chef-story">
+                        <h3>The Manpasand Story</h3>
+                        <img src="https://source.unsplash.com/featured/900x600/?fine,dining,interior" alt="Restaurant Interior" loading="lazy">
+                        <p>Manpasand Kitchen & Restaurant was born from a passion to bring the vibrant, rich flavors of Pakistani cuisine to the heart of Abu Dhabi. Our journey began with a simple philosophy: use the freshest ingredients, time-honored recipes, and a touch of heartfelt hospitality to create an unparalleled dining experience.</p>
+                        <p>Every dish tells a story, a heritage of generations of culinary artistry. From the bustling streets of Lahore to the serene valleys of Peshawar, our chefs meticulously craft each meal, ensuring an authentic taste that transports you to Pakistan. We invite you to discover the true essence of Manpasand – "the beloved choice."</p>
+                    </div>
+                </div>
+
+                <div class="gallery-reservations">
+                    <h3 class="section-heading" style="margin-top: 4rem;">Our Ambience & Experiences</h3>
+                    <div class="ambience-gallery">
+                        <img src="https://source.unsplash.com/featured/600x400/?chef,cooking" alt="Chef Cooking" loading="lazy">
+                        <img src="https://source.unsplash.com/featured/600x400/?restaurant,ambience" alt="Restaurant Ambience" loading="lazy">
+                    </div>
+
+                    <div class="reservations-cta">
+                        <h3>Planning a Special Occasion?</h3>
+                        <p>Whether it's an intimate dinner or a grand celebration, our Private Dining and Catering services ensure a memorable event.</p>
+                        <a href="#contact" class="btn">Inquire Now</a>
+                    </div>
+
+                    <div class="delivery-takeaway-cta">
+                        <h3>Craving Authentic Pakistani Flavors?</h3>
+                        <p>Enjoy Manpasand at home with our convenient Takeaway and Home Delivery options, or order swiftly with Online Ordering.</p>
+                        <a href="#" class="btn">Order Online Today</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews">
+            <div class="container">
+                <h2 class="section-heading">What Our Guests Say</h2>
+                <div class="google-rating">
+                    <i class="fab fa-google"></i> <i class="fas fa-star"></i> 4.6/5 Google Rating Across Hundreds of Reviews
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="review-text">"Manpasand Kitchen delivered an outstanding Private Dining experience for our anniversary. The food was exquisite, especially the Gosht Karahi, and the service was impeccable. Truly a gem in Abu Dhabi!"</p>
+                        <p class="reviewer-name">Aisha K.</p>
+                        <p class="review-source">Google Review</p>
+                    </div>
+                    <div class="review-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="review-text">"I regularly use their Home Delivery service, and the Chicken Biryani always arrives fresh and bursting with flavor. The online ordering process is so smooth. Highly recommend for an authentic taste of Pakistan!"</p>
+                        <p class="reviewer-name">Ahmed R.</p>
+                        <p class="review-source">Google Review</p>
+                    </div>
+                    <div class="review-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="review-text">"We loved our Dine-In experience! The ambience is warm and inviting, and the Lahori Chargha was simply divine. We're already planning our next visit. Manpasand is now our go-to for Pakistani food."</p>
+                        <p class="reviewer-name">Fatima S.</p>
+                        <p class="review-source">Google Review</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Features Section -->
+        <section id="features">
+            <div class="container">
+                <h2 class="section-heading">Exciting New Features Now Available!</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-comments"></i>
+                        <div>
+                            <h4>Live Chat</h4>
+                            <p>Instant support from our team, 24/7. Get your questions answered in real-time!</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <div>
+                            <h4>Online Booking</h4>
+                            <p>Easily reserve your table or private dining experience directly on our website, without calling.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-robot"></i>
+                        <div>
+                            <h4>AI Assistant</h4>
+                            <p>Our intelligent assistant answers common questions automatically, making your visit smoother.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-microphone-alt"></i>
+                        <div>
+                            <h4>AI Voice Agent</h4>
+                            <p>Every call answered, never missed! Our AI voice agent ensures you always get the information you need.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp Integration</h4>
+                            <p>Get instant replies and support directly on WhatsApp for quick and convenient communication.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-star-half-alt"></i>
+                        <div>
+                            <h4>Live Google Reviews</h4>
+                            <p>See our latest customer feedback updated automatically on the site, ensuring transparency.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-heading">Connect With Us</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Our Details</h3>
+                        <p><i class="fas fa-phone-alt"></i> Phone: <a href="tel:+971544100807">+971 54 410 0807</a></p>
+                        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:info@manpasandkitchenuae.com">info@manpasandkitchenuae.com</a></p>
+                        <p><i class="fas fa-map-marker-alt"></i> Address: 5 Al Satr St - Al Danah - Zone 1 - Abu Dhabi - United Arab Emirates</p>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Send Us an Enquiry</h3>
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Your Phone (Optional)</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service of Interest</label>
+                                <select id="service" name="service">
+                                    <option value="">Select a service...</option>
+                                    <option value="Dine-In">Dine-In</option>
+                                    <option value="Takeaway">Takeaway</option>
+                                    <option value="Home Delivery">Home Delivery</option>
+                                    <option value="Private Dining">Private Dining</option>
+                                    <option value="Catering">Catering</option>
+                                    <option value="Online Ordering">Online Ordering</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.718715878235!2d54.372579615000006!3d24.49884538419616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e679b3c4f74d9%3A0x6b7b2b7b2b7b2b7b!2s5%20Al%20Satr%20St%20-%20Al%20Danah%20-%20Zone%201%20-%20Abu%20Dhabi%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sus!4v1678886400000!5m2!1sen!2sus"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <a href="#hero" class="logo">Manpasand Kitchen & Restaurant</a>
+                <p class="copyright">&copy; 2023 Manpasand Kitchen & Restaurant. All rights reserved.</p>
+            </div>
+            <div class="footer-col">
+                <ul class="footer-nav">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#menu-about">Menu & Story</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <ul class="footer-services">
+                    <li><span>Dine-In</span></li>
+                    <li><span>Takeaway</span></li>
+                    <li><span>Home Delivery</span></li>
+                    <li><span>Private Dining</span></li>
+                    <li><span>Catering</span></li>
+                    <li><span>Online Ordering</span></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact-info">
+                <p><i class="fas fa-phone-alt"></i> +971 54 410 0807</p>
+                <p><i class="fas fa-envelope"></i> info@manpasandkitchenuae.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 5 Al Satr St - Al Danah - Zone 1 - Abu Dhabi - UAE</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/971544100807" class="whatsapp-float" target="_blank" aria-label="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    const navLinks = document.getElementById('navLinks');
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // Mobile navigation toggle
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Basic form submission handler (for static site, just confirms submission)
+            const contactForm = document.querySelector('#contact form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your enquiry! We will get back to you shortly.');
+                    // In a real application, you would send this data to a server
+                    this.reset(); // Clear the form
+                });
+            }
+        });
+    </script>
+</body>
+</html>
